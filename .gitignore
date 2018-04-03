@@ -6,3 +6,7 @@ Thumbs.db
 
 # composer vendor dir
 /vendor
+/phinx.yml
+/src/Configs/db.php
+/src/Configs/auth.php
+/src/Configs/web.php

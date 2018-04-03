@@ -2,19 +2,22 @@
     "require": {
         "slim/slim": "^3.0",
         "illuminate/database": "^5.6",
-        "slim/php-view": "^2.2"
+        "slim/php-view": "^2.2",
+        "php-di/slim-bridge": "^2.0",
+        "jasongrimes/paginator": "~1.0",
+        "robmorgan/phinx": "^0.9.2"
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app",
-            "App\\Controllers\\": "app/controllers",
-            "App\\Models\\": "app/models",
-            "App\\Console\\": "app/console",
-            "App\\Services\\": "app/services",
-            "App\\Middleware\\": "app/middleware",
-            "App\\Widgets\\": "app/widgets",
-            "App\\Auth\\": "app/auth",
-            "App\\Helpers\\": "app/helpers"
+            "App\\": "src",
+            "App\\Controllers\\": "src/controllers",
+            "App\\Models\\": "src/Models",
+            "App\\Console\\": "src/Console",
+            "App\\Services\\": "src/Services",
+            "App\\Middleware\\": "src/Middleware",
+            "App\\Widgets\\": "src/Widgets",
+            "App\\Auth\\": "src/Auth",
+            "App\\Helpers\\": "src/Helpers"
         }
     }
 }
