@@ -1,19 +1,20 @@
 <?php namespace App\Controllers;
 
 use App\Services\Pages\PageDataFactory;
-use App\Services\PostListService\PostCategoryListService;
 use App\Services\PostListService\PostListFactory;
+use App\Services\PostListService\PostTagListService;
 use Psr\Http\Message\ResponseInterface;
 
-class CategoryController extends Controller {
+class TagController extends Controller {
 
-    const SUBTEMPLATE = 'category';
+
+    const SUBTEMPLATE = 'tag';
 
     public function actionIndex(ResponseInterface $response, $alias, $pageNumber = null)
     {
-        /** @var PostCategoryListService $listService */
+        /** @var PostTagListService $listService */
         $listService = $this->postListFactory->build(
-            PostListFactory::TYPE_CATEGORY,
+            PostListFactory::TYPE_TAG,
             $pageNumber,
             10,
             $alias
@@ -22,10 +23,9 @@ class CategoryController extends Controller {
         $postList = $listService->getList();
         $paginator = $listService->getPaginator();
 
-        $pageData = $this->pageDataFactory->build(PageDataFactory::TYPE_CATEGORY, $alias);
+        $pageData = $this->pageDataFactory->build(PageDataFactory::TYPE_TAG, $alias);
 
         $categoryList = $this->categoryListService->getAllCategories();
-
         $tagList = $this->tagListService->getAllTags();
 
         return $this->view->render($response, 'layout.php', [
@@ -37,5 +37,6 @@ class CategoryController extends Controller {
             'tagList' => $tagList
         ]);
     }
+
 
 }

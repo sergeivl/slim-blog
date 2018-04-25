@@ -11,6 +11,7 @@ class Page extends Model
         'title_seo',
         'meta_d',
         'meta_k',
+        'preview_text',
         'text',
         'alias',
         'status',

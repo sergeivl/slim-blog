@@ -3,6 +3,6 @@
 ?>
 <div style="margin: 20px 10px;">
     <h2><?= $post['title'] ?></h2>
-    <p><?= $post['text'] ?></p>
+    <p><?= $post['preview_text'] ?></p>
     <p><a href="/<?= $post['alias'] ?>.html">Читать полностью</a></p>
 </div>

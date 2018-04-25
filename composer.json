@@ -14,6 +14,7 @@
             "App\\Models\\": "src/Models",
             "App\\Console\\": "src/Console",
             "App\\Services\\": "src/Services",
+            "App\\Services\\Pages\\": "src/Services/Pages",
             "App\\Middleware\\": "src/Middleware",
             "App\\Widgets\\": "src/Widgets",
             "App\\Auth\\": "src/Auth",

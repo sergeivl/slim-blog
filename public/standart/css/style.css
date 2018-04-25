@@ -1,0 +1,101 @@
+body {
+    background: rgb(239, 240, 241) !important;
+}
+
+h1 {
+    color: rgb(255, 65, 67) !important;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+h2 {
+    color: rgb(43, 61, 80) !important;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+h3{
+    color: #808080;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+h4{
+    color: #808080;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+
+.svl-menu {
+    background-color: rgb(25,36,47) !important;
+}
+
+.svl-menu .nav-item {
+    margin-right:50px;
+}
+
+.svl-menu .nav-item a{
+    color: #6abcdd !important;
+}
+
+.svl-menu .nav-item a:hover{
+    color: #ffffff !important;
+}
+
+.svl-sidebar {
+    padding-top: 30px;
+    background-color: rgb(43,61,80) !important;
+    padding-left: 0;
+    padding-right: 0;
+    width: 250px;
+}
+
+.svl-sidebar h2 {
+    color: rgb(214, 218, 219) !important;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding-left: 15px;
+    margin-bottom: 5px;
+}
+
+.svl-sidebar a {
+    color: #6abcdd;
+}
+
+.svl-sidebar a:hover {
+    color: #a8d8eb;
+    padding-left: 18px;
+    transition: padding 0.3s;
+}
+
+.svl-logo {
+    color: rgb(255, 65, 67) !important;
+    margin-right: 125px; ;
+}
+
+.sidebar-sticky {
+    margin-bottom: 40px;
+}
+
+.svl-main {
+    background: rgb(239, 240, 241) !important;
+}
+
+.svl-main .main-content {
+    max-width: 1000px;
+    margin-left: 25px;
+    margin-top: 15px;
+}
+
+.btn-outline-primary {
+    color: #6abcdd !important;
+    border-color: #6abcdd !important;
+}
+
+.btn-outline-primary:hover {
+    color: #ffffff !important;
+    background-color: #6abcdd !important;
+}

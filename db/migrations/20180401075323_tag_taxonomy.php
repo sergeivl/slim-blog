@@ -9,8 +9,10 @@ class TagTaxonomy extends AbstractMigration
     {
         $this->table('tag_taxonomy')
             ->addColumn('post_id', 'integer', ['null' => false])
-            ->addColumn('category_id', ['null' => false])
-            ->addForeignKey(['tag_id'], 'tag')
-            ->addIndex(['post_id', 'tag_id'], ['unique' => true]);
+            ->addColumn('tag_id', 'integer', ['null' => false])
+            ->addIndex(['post_id', 'tag_id'], ['unique' => true])
+            ->addForeignKey(['post_id'], 'post')
+            ->addForeignKey(['tag_id'], 'category')
+            ->save();
     }
 }

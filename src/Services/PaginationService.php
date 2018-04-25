@@ -36,7 +36,10 @@ class PaginationService extends Paginator
         }
         $html .= '</ul>';
 
+        $html = str_replace('/1"', '/"', $html);
+
         return $html;
     }
+
 
 }
