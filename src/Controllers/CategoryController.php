@@ -4,13 +4,21 @@ use App\Services\Pages\PageDataFactory;
 use App\Services\PostListService\PostCategoryListService;
 use App\Services\PostListService\PostListFactory;
 use Psr\Http\Message\ResponseInterface;
+use Slim\Http\Response;
 
 class CategoryController extends Controller {
 
     const SUBTEMPLATE = 'category';
 
-    public function actionIndex(ResponseInterface $response, $alias, $pageNumber = null)
+    public function actionIndex(Response $response, $alias, $pageNumber = null)
     {
+        $pageData = $this->pageDataFactory->build(PageDataFactory::TYPE_CATEGORY, $alias);
+
+        if (!$pageData) {
+            return $response->withRedirect('/error/not-found');
+
+        }
+
         /** @var PostCategoryListService $listService */
         $listService = $this->postListFactory->build(
             PostListFactory::TYPE_CATEGORY,
@@ -22,7 +30,6 @@ class CategoryController extends Controller {
         $postList = $listService->getList();
         $paginator = $listService->getPaginator();
 
-        $pageData = $this->pageDataFactory->build(PageDataFactory::TYPE_CATEGORY, $alias);
 
         $categoryList = $this->categoryListService->getAllCategories();
 

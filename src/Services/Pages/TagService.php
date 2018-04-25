@@ -14,9 +14,8 @@ class TagService
 
     public function getData($alias)
     {
-        $tag = $this->tag::where('alias', $alias)->first();
-        if (!$tag) {
-            throw new Exception('Tag not found');
+        if (! $tag = $this->tag::where('alias', $alias)->first()) {
+            return false;
         }
         return $tag->toArray();
     }

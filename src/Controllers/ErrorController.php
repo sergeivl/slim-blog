@@ -1,24 +1,23 @@
 <?php namespace App\Controllers;
 
-use App\Services\Pages\PageDataFactory;
-use Psr\Http\Message\ResponseInterface;
 use Slim\Http\Response;
 
-class PageController extends Controller {
-
-    const SUBTEMPLATE = 'page';
-
-    public function actionView(Response $response, $alias)
+class ErrorController extends Controller
+{
+    const SUBTEMPLATE = '404';
+    public function actionNotFound(Response $response)
     {
-
-        $pageData = $this->pageDataFactory->build(PageDataFactory::TYPE_PAGE, $alias);
-
-        if (!$pageData) {
-            return $response->withRedirect('/error/not-found');
-        }
+        $pageData = [
+            'title' => 'Ошибка 404',
+            'title_seo' => 'Ошибка 404',
+            'meta_d' => '',
+            'meta_k' => ''
+        ];
 
         $categoryList = $this->categoryListService->getAllCategories();
         $tagList = $this->tagListService->getAllTags();
+
+        $response->withStatus('404');
 
         return $this->view->render($response, 'layout.php', [
             'subtemplate' => self::SUBTEMPLATE,
@@ -26,7 +25,5 @@ class PageController extends Controller {
             'categoryList' => $categoryList,
             'tagList' => $tagList
         ]);
-
     }
-
 }

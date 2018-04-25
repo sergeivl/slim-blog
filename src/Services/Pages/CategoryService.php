@@ -14,7 +14,10 @@ class CategoryService
 
     public function getData($alias)
     {
-        return $this->category->where('alias', $alias)->first()->toArray();
+        if (!$category = $this->category->where('alias', $alias)->first()) {
+            return false;
+        }
+        return $category->toArray();
     }
 
 

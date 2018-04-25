@@ -13,7 +13,10 @@ class PostService
 
     public function getData($alias)
     {
-        return $this->post::where('alias', $alias)->first()->toArray();
+        if (!$post = $this->post::where('alias', $alias)->first()) {
+            return false;
+        }
+        return $post->toArray();
     }
 
 }

@@ -2,14 +2,20 @@
 
 use App\Services\Pages\PageDataFactory;
 use Psr\Http\Message\ResponseInterface;
+use Slim\Http\Response;
 
 class PostController extends Controller {
 
     const SUBTEMPLATE = 'post';
 
-    public function actionView(ResponseInterface $response, $alias)
+    public function actionView(Response $response, $alias)
     {
         $pageData = $this->pageDataFactory->build(PageDataFactory::TYPE_POST, $alias);
+
+        if (!$pageData) {
+            return $response->withRedirect('/error/not-found');
+        }
+
         $categoryList = $this->categoryListService->getAllCategories();
 
         $tagList = $this->tagListService->getAllTags();

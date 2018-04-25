@@ -3,15 +3,22 @@
 use App\Services\Pages\PageDataFactory;
 use App\Services\PostListService\PostListFactory;
 use App\Services\PostListService\PostTagListService;
-use Psr\Http\Message\ResponseInterface;
+use Slim\Http\Response;
 
 class TagController extends Controller {
 
 
     const SUBTEMPLATE = 'tag';
 
-    public function actionIndex(ResponseInterface $response, $alias, $pageNumber = null)
+    public function actionIndex(Response $response, $alias, $pageNumber = null)
     {
+
+        $pageData = $this->pageDataFactory->build(PageDataFactory::TYPE_TAG, $alias);
+
+        if (!$pageData) {
+            return $response->withRedirect('/error/not-found');
+        }
+
         /** @var PostTagListService $listService */
         $listService = $this->postListFactory->build(
             PostListFactory::TYPE_TAG,
@@ -22,8 +29,6 @@ class TagController extends Controller {
 
         $postList = $listService->getList();
         $paginator = $listService->getPaginator();
-
-        $pageData = $this->pageDataFactory->build(PageDataFactory::TYPE_TAG, $alias);
 
         $categoryList = $this->categoryListService->getAllCategories();
         $tagList = $this->tagListService->getAllTags();

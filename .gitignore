@@ -4,6 +4,8 @@
 # windows thumbnail cache
 Thumbs.db
 
+composer.phar
+
 # composer vendor dir
 /vendor
 /phinx.yml

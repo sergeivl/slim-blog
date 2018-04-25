@@ -12,7 +12,10 @@ class PageService
 
     public function getData($alias)
     {
-        return $this->page::where('alias', $alias)->first()->toArray();
+        if (!$page = $this->page::where('alias', $alias)->first()) {
+            return false;
+        }
+        return $page->toArray();
     }
 
 }
