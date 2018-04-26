@@ -3,7 +3,7 @@ _Blog based on Slim 3 framework_
 
 ## Install
 At the root, run the command:
-`composer update`
+`composer install`
 
 ## Configuration
 * Create a file `phinx.yml` based on `phinx.sample.yml` and configure it.
