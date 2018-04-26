@@ -1,6 +1,6 @@
 <?php
 return [
-    'web.theme' => 'standart',
+    'web.theme' => 'standard',
     'web.textLogo' => 'SergeiVL.Ru',
     'web.ImgLogo' => null,
     'web.postPerPage' => 10

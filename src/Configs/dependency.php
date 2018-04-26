@@ -4,7 +4,7 @@ use Psr\Container\ContainerInterface;
 return [
     \Slim\Views\PhpRenderer::class => DI\autowire()
         ->constructor(
-            '../src/Views/standart/',
+            '../src/Views/standard/',
             [
                 'textLogo' => get('web.textLogo'),
             ]

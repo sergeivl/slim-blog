@@ -14,7 +14,7 @@
     <meta name="author" content="">
     <link rel="icon" href="">
 
-    <link rel="icon" type="image/png" href="/standart/img/favicon.png">
+    <link rel="icon" type="image/png" href="/standard/img/favicon.png">
 
     <title><?= $pageData['title_seo'] ? $pageData['title_seo'] : $pageData['title'] ?></title>
 
@@ -26,7 +26,7 @@
           href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 
-    <link rel="stylesheet" href="/standart/css/style.css">
+    <link rel="stylesheet" href="/standard/css/style.css">
 
 
 
