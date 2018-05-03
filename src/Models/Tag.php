@@ -23,4 +23,8 @@ class Tag extends Model
         'post_count',
         'sort'
     ];
+    public function TagTaxonomy()
+    {
+        return $this->hasMany('App\Models\TagTaxonomy', 'tag_id', 'id');
+    }
 }

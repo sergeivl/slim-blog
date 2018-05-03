@@ -12,7 +12,7 @@ class TagTaxonomy extends AbstractMigration
             ->addColumn('tag_id', 'integer', ['null' => false])
             ->addIndex(['post_id', 'tag_id'], ['unique' => true])
             ->addForeignKey(['post_id'], 'post', ['id'], ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
-            ->addForeignKey(['tag_id'], 'category', ['id'], ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
+            ->addForeignKey(['tag_id'], 'tag', ['id'], ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
             ->save();
     }
 }

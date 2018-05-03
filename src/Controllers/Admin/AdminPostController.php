@@ -1,6 +1,9 @@
 <?php namespace App\Controllers\Admin;
 
+use App\Models\CategoryTaxonomy;
 use App\Models\Post;
+use App\Models\Tag;
+use App\Models\TagTaxonomy;
 use App\Services\Admin\PostAdminService;
 use App\Services\Pages\PageDataFactory;
 use App\Services\PostListService\PostAllListService;
@@ -72,8 +75,8 @@ class AdminPostController extends Controller
 
     public function actionUpdate(Request $request, Response $response, PostAdminService $postSaveService, $id)
     {
-        if ($request->getParsedBody()) {
-            $postSaveService->save($request->getParsedBody(), $id);
+        if ($body = $request->getParsedBody()) {
+            $postSaveService->save($body, $id);
         }
 
         $pageData = [
@@ -88,12 +91,36 @@ class AdminPostController extends Controller
 
         $postData = $this->pageDataFactory->build(PageDataFactory::TYPE_POST, null, $id);
 
+
+        $postData['categories'] = [];
+
+        // TODO: Отрефакторить. Сделать отдельный сервис, собирающий коллецию данных
+        $categoryTaxonomies = CategoryTaxonomy::where('post_id', $id)->get();
+        foreach ($categoryTaxonomies as $categoryTaxonomy) {
+            /** @var CategoryTaxonomy $categoryTaxonomy */
+            $postData['categories'][] = $categoryTaxonomy->category_id;
+        }
+
+        // TODO: Отрефакторить. Сделать отдельный сервис, выгружающий теги поста
+        $tagsFromDb = Tag::whereHas('tagTaxonomy', function ($query) use ($id) {
+            $query->where('post_id', '=', $id);
+        })->get();
+
+        $tags = [];
+        foreach ($tagsFromDb as $tagFromDb) {
+            $tags[] = $tagFromDb->title;
+        }
+
+
+        $postData['tags'] = implode(', ', $tags);
+
+
         return $this->view->render($response, 'layout.php', [
             'subtemplate' => self::SUBTEMPLATE_POST_UPDATE,
             'pageData' => $pageData,
             'categoryList' => $categoryList,
             'tagList' => $tagList,
-            'postData' => $postData
+            'postData' => $postData,
         ]);
     }
 

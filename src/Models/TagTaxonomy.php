@@ -3,6 +3,8 @@
 /**
  * Class TagTaxonomy
  * @package App\Models
+ * @property integer $tag_id
+ * @property integer $post_id
  */
 class TagTaxonomy extends Model
 {

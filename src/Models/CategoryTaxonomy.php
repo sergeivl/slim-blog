@@ -3,6 +3,8 @@
 /**
  * Class CategoryTaxonomy
  * @package App\Models
+ * @property int $category_id
+ * @property int $post_id
  */
 class CategoryTaxonomy extends Model
 {

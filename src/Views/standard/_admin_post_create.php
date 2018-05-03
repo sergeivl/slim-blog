@@ -1,3 +1,6 @@
+<?php
+/** @var array $categoryList */
+?>
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/admin/panel">Админка</a></li>
     <li class="breadcrumb-item"><a href="/admin/post">Управление постами</a></li>
@@ -42,8 +45,15 @@
         <input class="form-control" id="alias" name="alias">
     </div>
 
+    <?php foreach ($categoryList as $category) : ?>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="category-<?= $category['id'] ?>" value="<?= $category['id'] ?>" name="categories[]">
+            <label class="form-check-label" for="category-<?= $category['id'] ?>"><?= $category['title'] ?></label>
+        </div>
+    <?php endforeach; ?>
+
     <br>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
 </form>
 
 
