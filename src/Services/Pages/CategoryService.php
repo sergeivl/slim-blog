@@ -12,9 +12,17 @@ class CategoryService
         $this->category = $category;
     }
 
-    public function getData($alias)
+    public function getDataByAlias($alias)
     {
         if (!$category = $this->category->where('alias', $alias)->first()) {
+            return false;
+        }
+        return $category->toArray();
+    }
+
+    public function getDataById($id)
+    {
+        if (!$category = $this->category->where('id', $id)->first()) {
             return false;
         }
         return $category->toArray();

@@ -4,6 +4,8 @@
 /** @var array $pageData  */
 /** @var array $categoryList */
 /** @var array $tagList */
+
+$moreJs = '';
 ?>
 <!doctype html>
 <html lang="ru">
@@ -12,8 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="<?= $pageData['meta_d'] ?>">
     <meta name="author" content="">
-    <link rel="icon" href="">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/png" href="/standard/img/favicon.png">
 
     <title><?= $pageData['title_seo'] ? $pageData['title_seo'] : $pageData['title'] ?></title>
@@ -25,6 +27,7 @@
     <link rel="stylesheet"
           href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
 
     <link rel="stylesheet" href="/standard/css/style.css">
 
@@ -191,6 +194,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
@@ -202,6 +206,7 @@
     });
 </script>
 
+<?= $moreJs ?>
 
 </body>
 </html>

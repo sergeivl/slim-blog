@@ -14,7 +14,10 @@ class AuthMiddleware
 
     public function __invoke(Request $request, Response $response, $next)
     {
-        // TODO: сделать проверку авторизации
+        if (!$this->authService->check()) {
+            return $response->withRedirect('/user/login');
+        }
+
         return  $next($request, $response);
     }
 }

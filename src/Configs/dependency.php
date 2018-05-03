@@ -16,11 +16,13 @@ return [
     \App\Services\AuthService::class => DI\autowire()
         ->constructor(get('auth.login'), get('auth.password')),
 
-    \Slim\Handlers\NotFound::class => function (ContainerInterface $c) {
+    'notFoundHandler' => function (ContainerInterface $c) {
 
-        return new Errors\NotFoundHandler
+        return new \App\Errors\NotFoundHandler
         (
-            $c->get(\Slim\Views\PhpRenderer::class)
+            $c->get(\Slim\Views\PhpRenderer::class),
+            $c->get(\App\Services\CategoryListService::class),
+            $c->get(\App\Services\TagListService::class)
         );
     },
 

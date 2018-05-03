@@ -12,9 +12,17 @@ class TagService
         $this->tag = $tag;
     }
 
-    public function getData($alias)
+    public function getDataByAlias($alias)
     {
         if (! $tag = $this->tag::where('alias', $alias)->first()) {
+            return false;
+        }
+        return $tag->toArray();
+    }
+
+    public function getDataById($id)
+    {
+        if (! $tag = $this->tag::where('id', $id)->first()) {
             return false;
         }
         return $tag->toArray();

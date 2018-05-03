@@ -1,10 +1,8 @@
 <?php namespace App\Services;
 
-use Slim\Container;
-
 class AuthService
 {
-    const LOGIN = 'admin';
+    const LOGIN = 'sergeivl39@gmail.com';
     const PASSWORD = 'trunc';
 
     private $login;

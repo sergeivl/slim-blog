@@ -10,15 +10,18 @@
     "autoload": {
         "psr-4": {
             "App\\": "src",
-            "App\\Controllers\\": "src/controllers",
+            "App\\Controllers\\": "src/Controllers",
+            "App\\Controllers\\Admin\\": "src/Controllers/Admin",
             "App\\Models\\": "src/Models",
             "App\\Console\\": "src/Console",
             "App\\Services\\": "src/Services",
             "App\\Services\\Pages\\": "src/Services/Pages",
+            "App\\Services\\Admin\\": "src/Services/Admin",
             "App\\Middleware\\": "src/Middleware",
             "App\\Widgets\\": "src/Widgets",
             "App\\Auth\\": "src/Auth",
-            "App\\Helpers\\": "src/Helpers"
+            "App\\Helpers\\": "src/Helpers",
+            "App\\Errors\\": "src/Errors"
         }
     }
 }

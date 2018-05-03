@@ -10,7 +10,7 @@ class PageService
         $this->page = $page;
     }
 
-    public function getData($alias)
+    public function getDataByAlias($alias)
     {
         if (!$page = $this->page::where('alias', $alias)->first()) {
             return false;
@@ -18,4 +18,11 @@ class PageService
         return $page->toArray();
     }
 
+    public function getDataById($id)
+    {
+        if (!$page = $this->page::where('id', $id)->first()) {
+            return false;
+        }
+        return $page->toArray();
+    }
 }

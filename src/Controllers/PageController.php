@@ -1,20 +1,20 @@
 <?php namespace App\Controllers;
 
 use App\Services\Pages\PageDataFactory;
-use Psr\Http\Message\ResponseInterface;
+use Slim\Http\Request;
 use Slim\Http\Response;
 
 class PageController extends Controller {
 
     const SUBTEMPLATE = 'page';
 
-    public function actionView(Response $response, $alias)
+    public function actionView(Response $response, Request $request, $alias)
     {
 
         $pageData = $this->pageDataFactory->build(PageDataFactory::TYPE_PAGE, $alias);
 
         if (!$pageData) {
-            return $response->withRedirect('/error/not-found');
+            ($this->notFoundHandler)($request, $response);
         }
 
         $categoryList = $this->categoryListService->getAllCategories();

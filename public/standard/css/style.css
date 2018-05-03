@@ -51,7 +51,7 @@ h4{
     padding-left: 0;
     padding-right: 0;
     width: 250px;
-    height: calc(100vh - 72px);
+    min-height: calc(100vh - 72px);
 }
 
 .svl-sidebar h2 {
@@ -74,7 +74,7 @@ h4{
 
 .svl-logo {
     color: rgb(255, 65, 67) !important;
-    margin-right: 125px; ;
+    margin-right: 125px;
 }
 
 .sidebar-sticky {
@@ -99,4 +99,9 @@ h4{
 .btn-outline-primary:hover {
     color: #ffffff !important;
     background-color: #6abcdd !important;
+}
+
+.far {
+    font-family: fontawesome !important;
+    font-style: normal;
 }

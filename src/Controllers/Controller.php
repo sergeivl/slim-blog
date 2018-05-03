@@ -1,5 +1,6 @@
 <?php namespace App\Controllers;
 
+use App\Errors\NotFoundHandler;
 use App\Services\CategoryListService;
 use App\Services\Pages\PageDataFactory;
 use App\Services\PostListService\PostListFactory;
@@ -13,6 +14,7 @@ abstract class Controller {
     protected $pageDataFactory;
     protected $categoryListService;
     protected $tagListService;
+    protected $notFoundHandler;
 
     /**
      * Controller constructor.
@@ -21,6 +23,7 @@ abstract class Controller {
      * @param PageDataFactory $pageDataFactory
      * @param CategoryListService $categoryListService
      * @param TagListService $tagListService
+     * @param NotFoundHandler $notFoundHandler
      * @internal param PostCategoryListService $postListService
      */
     public function __construct(
@@ -28,7 +31,8 @@ abstract class Controller {
         PostListFactory $postListFactory,
         PageDataFactory $pageDataFactory,
         CategoryListService $categoryListService,
-        TagListService $tagListService
+        TagListService $tagListService,
+        NotFoundHandler $notFoundHandler
     )
     {
         $this->view = $view;
@@ -36,6 +40,7 @@ abstract class Controller {
         $this->pageDataFactory = $pageDataFactory;
         $this->categoryListService = $categoryListService;
         $this->tagListService = $tagListService;
+        $this->notFoundHandler = $notFoundHandler;
     }
 
 }

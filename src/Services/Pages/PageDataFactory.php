@@ -23,23 +23,56 @@ class PageDataFactory
         $this->tagService = $tagService;
     }
 
-    public function build($type, $alias)
+    public function build($type, $alias = null, $id = null)
+    {
+        if ($alias) {
+            return $this->getDataByAlias($type, $alias);
+        } elseif($id) {
+            return $this->getDataById($type, $id);
+        }
+
+        throw new \Exception('Отсутствует идентификатор страницы', 500);
+
+    }
+
+    private function getDataByAlias($type, $alias)
     {
         switch ($type) {
             case self::TYPE_PAGE :
-                return $this->pageService->getData($alias);
+                return $this->pageService->getDataByAlias($alias);
                 break;
             case self::TYPE_CATEGORY :
-                return $this->categoryService->getData($alias);
+                return $this->categoryService->getDataByAlias($alias);
                 break;
             case self::TYPE_TAG :
-                return $this->tagService->getData($alias);
+                return $this->tagService->getDataByAlias($alias);
                 break;
             case self::TYPE_POST :
-                return $this->postService->getData($alias);
+                return $this->postService->getDataByAlias($alias);
                 break;
             default :
                 throw new \Exception('Неизвестный типа для рендера страницы', 404);
         }
     }
+
+    private function getDataById($type, $id)
+    {
+        switch ($type) {
+            case self::TYPE_PAGE :
+                return $this->pageService->getDataById($id);
+                break;
+            case self::TYPE_CATEGORY :
+                return $this->categoryService->getDataById($id);
+                break;
+            case self::TYPE_TAG :
+                return $this->tagService->getDataByAlias($id);
+                break;
+            case self::TYPE_POST :
+                return $this->postService->getDataById($id);
+                break;
+            default :
+                throw new \Exception('Неизвестный типа для рендера страницы', 404);
+        }
+    }
+
 }

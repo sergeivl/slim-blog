@@ -3,6 +3,7 @@
 use App\Services\Pages\PageDataFactory;
 use App\Services\PostListService\PostListFactory;
 use App\Services\PostListService\PostTagListService;
+use Slim\Http\Request;
 use Slim\Http\Response;
 
 class TagController extends Controller {
@@ -10,13 +11,13 @@ class TagController extends Controller {
 
     const SUBTEMPLATE = 'tag';
 
-    public function actionIndex(Response $response, $alias, $pageNumber = null)
+    public function actionIndex(Request $request, Response $response, $alias, $pageNumber = null)
     {
 
         $pageData = $this->pageDataFactory->build(PageDataFactory::TYPE_TAG, $alias);
 
         if (!$pageData) {
-            return $response->withRedirect('/error/not-found');
+            ($this->notFoundHandler)($request, $response);
         }
 
         /** @var PostTagListService $listService */

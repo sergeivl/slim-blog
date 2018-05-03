@@ -1,10 +1,6 @@
 <?php namespace App\Controllers;
 
-use App\Services\Pages\PageDataFactory;
-use App\Services\PostListService\PostAllListService;
-use App\Services\PostListService\PostListFactory;
-use Psr\Http\Message\ResponseInterface;
-use Slim\Http\Body;
+use App\Services\AuthService;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -12,8 +8,12 @@ class UserController extends Controller {
 
     const SUBTEMPLATE = 'login';
 
-    public function actionView(ResponseInterface $response, $pageNumber = 1)
+    public function actionView(Request $request, Response $response, AuthService $authService, $pageNumber = 1)
     {
+
+        if ($authService->check()) {
+            return $response->withRedirect('/');
+        }
 
         $pageData = [
             'title' => 'Авторизация',
@@ -25,24 +25,37 @@ class UserController extends Controller {
 
         $categoryList = $this->categoryListService->getAllCategories();
         $tagList = $this->tagListService->getAllTags();
+        $errors = ['auth' => $request->getQueryParam('errors')];
+
 
         return $this->view->render($response, 'layout.php', [
             'subtemplate' => self::SUBTEMPLATE,
             'pageData' => $pageData,
             'categoryList' => $categoryList,
-            'tagList' => $tagList
+            'tagList' => $tagList,
+            'errors' => $errors
         ]);
 
     }
 
 
-    public function actionLogin(Request $request, Response $response)
+    public function actionLogin(Request $request, Response $response, AuthService $authService)
     {
 
-        /** @var Body $body */
-        $body = $request->getParsedBody();
+        if ($request->isPost()) {
 
-        print_r($body);
+            $formData = $request->getParsedBody();
 
+            $isAuth = $authService->attempt(
+                $formData['email'],
+                $formData['password']
+            );
+
+            if ($isAuth) {
+                return $response->withRedirect('/admin/panel');
+            }
+        }
+
+        return $response->withRedirect('/user/login?errors=1');
     }
 }
