@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\Admin\AdminPageController;
 use App\Controllers\Admin\AdminPanelController;
 use App\Controllers\Admin\AdminCategoryController;
 use App\Controllers\Admin\AdminPostController;
@@ -68,5 +69,41 @@ $app->get('/admin/post/save', [AdminPostController::class, 'actionSave'])
     ->add(\App\Middleware\AuthMiddleware::class);
 
 $app->get('/admin/post/save/{id:[0-9]+}', [AdminPostController::class, 'actionUpdate'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+
+
+$app->get('/admin/page', [AdminPageController::class, 'actionIndex'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+
+
+$app->get('/admin/page/delete/{id:[0-9]+}', [AdminPageController::class, 'actionDelete'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+
+$app->get('/admin/page/update/{id:[0-9]+}', [AdminPageController::class, 'actionUpdate'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+$app->post('/admin/page/update/{id:[0-9]+}', [AdminPageController::class, 'actionUpdate'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+
+
+$app->get('/admin/page/create', [AdminPageController::class, 'actionCreate'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+$app->post('/admin/page/create', [AdminPageController::class, 'actionCreate'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+
+
+
+$app->get('/admin/category', [AdminPageController::class, 'actionIndex'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+$app->get('/admin/category/create', [AdminPageController::class, 'actionCreate'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+$app->post('/admin/category/create', [AdminPageController::class, 'actionCreate'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+
+
+$app->get('/admin/tag', [AdminPageController::class, 'actionIndex'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+$app->get('/admin/tag/create', [AdminPageController::class, 'actionCreate'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+$app->post('/admin/tag/create', [AdminPageController::class, 'actionCreate'])
     ->add(\App\Middleware\AuthMiddleware::class);
 

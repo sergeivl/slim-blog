@@ -1,9 +1,7 @@
 <?php namespace App\Controllers\Admin;
 
 use App\Models\CategoryTaxonomy;
-use App\Models\Post;
 use App\Models\Tag;
-use App\Models\TagTaxonomy;
 use App\Services\Admin\PostAdminService;
 use App\Services\Pages\PageDataFactory;
 use App\Services\PostListService\PostAllListService;
@@ -124,9 +122,9 @@ class AdminPostController extends Controller
         ]);
     }
 
-    public function actionDelete(Response $response, PostAdminService $postSaveService, $id)
+    public function actionDelete(Response $response, PostAdminService $postAdminService, $id)
     {
-        $postSaveService->delete($id);
+        $postAdminService->delete($id);
         return $response->withRedirect('/admin/post');
     }
 

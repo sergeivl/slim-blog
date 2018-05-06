@@ -55,9 +55,12 @@ class PostAdminService
         $this->savePostTaxonomy($post->id, $postData['categories'] ?? []);
 
 
-        $tags = explode(',', $postData['tags']);
-        foreach ($tags as $key => $tag) {
-            $tags[$key] = trim($tag);
+        $tags = [];
+        if ($postData['tags']) {
+            $tags = explode(',', $postData['tags']);
+            foreach ($tags as $key => $tag) {
+                $tags[$key] = trim($tag);
+            }
         }
 
         $this->saveTagTaxonomy($post->id, $tags);
