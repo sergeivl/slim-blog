@@ -1,10 +1,10 @@
 <?php
-/** @var array $pageList */
+/** @var array $tagList */
 ?>
 
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/admin/panel">Админка</a></li>
-    <li class="breadcrumb-item">Управление страницами</li>
+    <li class="breadcrumb-item">Управление тегами</li>
 </ol>
 
 <p>
@@ -17,13 +17,13 @@
         <th>Заголовок</th>
         <th>Действия</th>
     </tr>
-    <?php foreach ($pageList as $page) : ?>
+    <?php foreach ($tagList as $tag) : ?>
         <tr>
-            <td><?= $page['id'] ?></td>
-            <td><?= $page['title'] ?></td>
+            <td><?= $tag['id'] ?></td>
+            <td><?= $tag['title'] ?></td>
             <td>
-                <a href="/admin/page/update/<?= $page['id'] ?>"><i class="far fa-edit"></i></a>&nbsp;
-                <a href="/admin/page/delete/<?= $page['id'] ?>" onclick="return confirm('Вы уверены, что хотите удалить пост?')">
+                <a href="/admin/tag/update/<?= $tag['id'] ?>"><i class="far fa-edit"></i></a>&nbsp;
+                <a href="/admin/tag/delete/<?= $tag['id'] ?>" onclick="return confirm('Вы уверены, что хотите удалить пост?')">
                     <i class="far fa-trash"></i>
                 </a>
             </td>

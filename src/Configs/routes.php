@@ -4,6 +4,7 @@ use App\Controllers\Admin\AdminPageController;
 use App\Controllers\Admin\AdminPanelController;
 use App\Controllers\Admin\AdminCategoryController;
 use App\Controllers\Admin\AdminPostController;
+use App\Controllers\Admin\AdminTagController;
 use App\Controllers\CategoryController;
 use App\Controllers\PageController;
 use App\Controllers\PostController;
@@ -39,11 +40,15 @@ $app->get('/admin/category', [AdminCategoryController::class, 'actionIndex'])
 
 $app->get('/admin/category/create', [AdminCategoryController::class, 'actionCreate'])
     ->add(\App\Middleware\AuthMiddleware::class);
-
-$app->get('/admin/category/update/{id:[0-9]+}', [AdminCategoryController::class, 'actionDelete'])
+$app->post('/admin/category/create', [AdminCategoryController::class, 'actionCreate'])
     ->add(\App\Middleware\AuthMiddleware::class);
 
-$app->get('/admin/category/delete/{id:[0-9]+}', [AdminCategoryController::class, 'actionUpdate'])
+$app->get('/admin/category/update/{id:[0-9]+}', [AdminCategoryController::class, 'actionUpdate'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+$app->post('/admin/category/update/{id:[0-9]+}', [AdminCategoryController::class, 'actionUpdate'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+
+$app->get('/admin/category/delete/{id:[0-9]+}', [AdminCategoryController::class, 'actionDelete'])
     ->add(\App\Middleware\AuthMiddleware::class);
 
 
@@ -92,18 +97,19 @@ $app->post('/admin/page/create', [AdminPageController::class, 'actionCreate'])
 
 
 
-$app->get('/admin/category', [AdminPageController::class, 'actionIndex'])
-    ->add(\App\Middleware\AuthMiddleware::class);
-$app->get('/admin/category/create', [AdminPageController::class, 'actionCreate'])
-    ->add(\App\Middleware\AuthMiddleware::class);
-$app->post('/admin/category/create', [AdminPageController::class, 'actionCreate'])
+$app->get('/admin/tag', [AdminTagController::class, 'actionIndex'])
     ->add(\App\Middleware\AuthMiddleware::class);
 
+$app->get('/admin/tag/create', [AdminTagController::class, 'actionCreate'])
+    ->add(\App\Middleware\AuthMiddleware::class);
+$app->post('/admin/tag/create', [AdminTagController::class, 'actionCreate'])
+    ->add(\App\Middleware\AuthMiddleware::class);
 
-$app->get('/admin/tag', [AdminPageController::class, 'actionIndex'])
+$app->get('/admin/tag/update', [AdminTagController::class, 'actionUpdate'])
     ->add(\App\Middleware\AuthMiddleware::class);
-$app->get('/admin/tag/create', [AdminPageController::class, 'actionCreate'])
+$app->post('/admin/tag/update', [AdminTagController::class, 'actionUpdate'])
     ->add(\App\Middleware\AuthMiddleware::class);
-$app->post('/admin/tag/create', [AdminPageController::class, 'actionCreate'])
+
+$app->get('/admin/tag/delete/{id:[0-9]+}', [AdminTagController::class, 'actionDelete'])
     ->add(\App\Middleware\AuthMiddleware::class);
 

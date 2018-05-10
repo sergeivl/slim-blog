@@ -2,22 +2,23 @@
 
 use App\Services\Admin\CategoryAdminService;
 use App\Controllers\Controller;
+use App\Services\Admin\TagAdminService;
 use App\Services\Pages\CategoryService;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 
-class AdminCategoryController extends Controller
+class AdminTagController extends Controller
 {
-    const SUBTEMPLATE_CATEGORY_INDEX = 'admin_category_index';
-    const SUBTEMPLATE_CATEGORY_CREATE = 'admin_category_create';
-    const SUBTEMPLATE_CATEGORY_UPDATE = 'admin_category_update';
+    const SUBTEMPLATE_TAG_INDEX = 'admin_tag_index';
+    const SUBTEMPLATE_TAG_CREATE = 'admin_tag_create';
+    const SUBTEMPLATE_TAG_UPDATE = 'admin_tag_update';
 
-    public function actionIndex(Response $response, $pageNumber = 1)
+    public function actionIndex(Response $response)
     {
         $pageData = [
-            'title' => 'Управление категориями',
-            'title_seo' => 'Управление категориями',
+            'title' => 'Управление тегами',
+            'title_seo' => 'Управление тегами',
             'meta_d' => '',
             'meta_k' => ''
         ];
@@ -26,7 +27,7 @@ class AdminCategoryController extends Controller
         $tagList = $this->tagListService->getAllTags();
 
         return $this->view->render($response, 'layout.php', [
-            'subtemplate' => self::SUBTEMPLATE_CATEGORY_INDEX,
+            'subtemplate' => self::SUBTEMPLATE_TAG_INDEX,
             'pageData' => $pageData,
             'categoryList' => $categoryList,
             'tagList' => $tagList
@@ -51,7 +52,7 @@ class AdminCategoryController extends Controller
         $tagList = $this->tagListService->getAllTags();
 
         return $this->view->render($response, 'layout.php', [
-            'subtemplate' => self::SUBTEMPLATE_CATEGORY_CREATE,
+            'subtemplate' => self::SUBTEMPLATE_TAG_CREATE,
             'pageData' => $pageData,
             'categoryList' => $categoryList,
             'tagList' => $tagList,
@@ -83,7 +84,7 @@ class AdminCategoryController extends Controller
         $categoryData = $categoryService->getDataById($id);
 
         return $this->view->render($response, 'layout.php', [
-            'subtemplate' => self::SUBTEMPLATE_CATEGORY_UPDATE,
+            'subtemplate' => self::SUBTEMPLATE_TAG_UPDATE,
             'pageData' => $pageData,
             'categoryList' => $categoryList,
             'tagList' => $tagList,
@@ -91,10 +92,10 @@ class AdminCategoryController extends Controller
         ]);
     }
 
-    public function actionDelete($id, CategoryAdminService $categoryAdminService, Response $response)
+    public function actionDelete($id, TagAdminService $tagAdminService, Response $response)
     {
-        $categoryAdminService->delete($id);
-        return $response->withRedirect('/admin/category');
+        $tagAdminService->delete($id);
+        return $response->withRedirect('/admin/tag');
     }
 
 }
