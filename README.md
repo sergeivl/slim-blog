@@ -9,4 +9,4 @@ At the root, run the command:
 * Create a file `phinx.yml` based on `phinx.sample.yml` and configure it.
 * Create a file `db.php` based on `db.sample.php` and configure it.
 * Create a file `web.php` based on `web.sample.php` and configure it.
-* Create a file `auth.php` based on `web.sample.php` and configure it.
+* Create a file `auth.php` based on `auth.sample.php` and configure it.
